@@ -8,6 +8,7 @@
 
 import React, {Component} from 'react';
 import {StyleSheet, Text,TextInput, View, Button} from 'react-native';
+import { bold } from 'ansi-colors';
 
 export default class App extends Component {
 
@@ -56,13 +57,23 @@ export default class App extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <TextInput onChangeText={(word) => this.setState({word})} placeholder='Word here'/>
+        <Text style={styles.welcome}>A Word Analyzer</Text>
         <Text></Text>
-        <Button color="#4286f4" onPress={this.analyzeWord} title='Analyze'/>
-        <Text>Word: {this.state.word}</Text>
-        <Text>No of Vowels: {this.state.vowelCount}</Text>
-        <Text>No of Consonant: {this.state.consonantCount}</Text>
-        <Text>No of Characters: {this.state.wordCount}</Text>
+        <Text></Text>
+        <Text style={{paddingRight:80}}> Word </Text>
+        <View style={styles.buton}>
+       
+          <TextInput style={styles.instructions} onChangeText={(word) => this.setState({word})} placeholder='type here'/>
+          <Text>    </Text>
+          <Button color="#4286f4" onPress={this.analyzeWord} title='Analyze'/>
+        </View>
+        <View style={styles.result}>
+        <Text></Text>
+        <Text style={styles.word}>Word                       : {this.state.word}</Text>
+        <Text style={styles.vowel}>No of Vowels         : {this.state.vowelCount}</Text>
+        <Text style={styles.consonent}>No of Consonant   : {this.state.consonantCount}</Text>
+        <Text style={styles.Character}>No of Characters   : {this.state.wordCount}</Text>
+        </View>
       </View>
     );
   }
@@ -76,13 +87,25 @@ const styles = StyleSheet.create({
     backgroundColor: '#F5FCFF',
   },
   welcome: {
-    fontSize: 20,
+    fontWeight:'bold',
     textAlign: 'center',
     margin: 10,
   },
   instructions: {
+
+    width:100,
+    borderWidth:1,
     textAlign: 'center',
     color: '#333333',
     marginBottom: 5,
   },
+  buton:{
+    flexDirection:'row',
+    alignItems:'flex-start',
+  },
+  result:{
+    alignItems:'flex-start',
+    paddingRight: 65
+  },
+
 });
